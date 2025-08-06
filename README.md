@@ -1,5 +1,6 @@
-# 🤖 Soroswap Pro Trader - Advanced Trading Bot
-
+# Soroswap Pro Trader - Advanced Trading Bot
+<br>
+<img src="/logo.png" alt="Soroswap Pro Trader" width="400"/><br> <br>
 [![Next.js](https://img.shields.io/badge/Next.js-15.4.3-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Stellar SDK](https://img.shields.io/badge/Stellar%20SDK-13.3.0-yellow)](https://github.com/StellarCN/js-stellar-sdk)
