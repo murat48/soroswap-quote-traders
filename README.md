@@ -1,4 +1,4 @@
-# 🤖 Soroswap Quote Trader - Advanced Trading Bot
+# 🤖 Soroswap Pro Trader - Advanced Trading Bot
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.4.3-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
