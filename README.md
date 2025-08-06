@@ -1,10 +1,7 @@
 # Soroswap Pro Trader - Advanced Trading Bot
 <br>
 <img src="/logo.png" alt="Soroswap Pro Trader" width="400"/><br> <br>
-[![Next.js](https://img.shields.io/badge/Next.js-15.4.3-black)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
-[![Stellar SDK](https://img.shields.io/badge/Stellar%20SDK-13.3.0-yellow)](https://github.com/StellarCN/js-stellar-sdk)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 
 An advanced automated trading bot for Soroswap DEX on Stellar network with intelligent price tracking, grid trading capabilities, and comprehensive risk management features.
 
@@ -279,5 +276,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - **Open Source Community** for tools and libraries
 
 ---
-
+[![Next.js](https://img.shields.io/badge/Next.js-15.4.3-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![Stellar SDK](https://img.shields.io/badge/Stellar%20SDK-13.3.0-yellow)](https://github.com/StellarCN/js-stellar-sdk)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 **⚠️ Disclaimer**: This is experimental software. Use at your own risk. Always test thoroughly with small amounts before scaling up your trading operations.
