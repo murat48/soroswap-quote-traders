@@ -1,4 +1,4 @@
-# 🤖 Soroswap Quote Trader - Advanced Trading Bot MVP
+# 🤖 Soroswap Quote Trader - Advanced Trading Bot
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.4.3-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
@@ -23,13 +23,11 @@ An advanced automated trading bot for Soroswap DEX on Stellar network with intel
 - **Balance Validation**: Automatic wallet balance checks before trades
 - **Error Recovery**: Robust error handling with automatic retries
 
-### 🤖 Bot Wallet Integration ⚠️ (Under Development)
-- **Automatic Funding**: Smart XLM transfer to bot wallet when needed
-- **Balance Monitoring**: Real-time bot wallet balance tracking  
-- **Dynamic Amount Calculation**: Intelligent funding based on trading requirements
+### 🤖 Wallet Integration
 - **Freighter Integration**: Seamless wallet connection with single-click approval
-
-> **Note**: Bot Wallet (Fully Automatic) version is currently in testing and development phase.
+- **Automatic Balance Monitoring**: Real-time wallet balance tracking  
+- **Smart Transaction Management**: Intelligent fee calculation and optimization
+- **Multi-Asset Support**: Full support for all Stellar assets
 
 ### 📱 Telegram Integration
 - **Real-time Notifications**: Instant alerts for trades and price movements
@@ -55,8 +53,8 @@ An advanced automated trading bot for Soroswap DEX on Stellar network with intel
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/murat48/soroswap-quote-trader.git
-cd soroswap-quote-trader
+git clone https://github.com/murat48/soroswap-quote-traders.git
+cd soroswap-quote-traders
 ```
 
 2. **Install dependencies**
@@ -167,11 +165,11 @@ src/
 - Risk management integration
 - Trade history logging
 
-#### Bot Wallet System ⚠️ (MVP Stage)
-- Automatic funding mechanism
-- Balance monitoring
-- Smart amount calculation
+#### Wallet System
 - Freighter wallet integration
+- Balance monitoring and management
+- Smart transaction optimization
+- Multi-asset support
 
 ## 🔐 Security & Safety
 
@@ -235,12 +233,13 @@ NEXT_PUBLIC_STELLAR_NETWORK="Test SDF Network ; September 2015"
 - **Market Volatility**: Crypto markets are highly volatile and unpredictable
 - **Technical Risks**: Software bugs or network issues may cause losses
 
-### 🧪 MVP Status
-This is a **Minimum Viable Product (MVP)** for demonstration and testing purposes:
-- Bot Wallet features are in active development
-- Thoroughly test with small amounts first
-- Monitor all automated trades closely
-- Use at your own risk
+### 🧪 Development Status
+This is a fully functional trading bot with the following capabilities:
+- Complete Freighter wallet integration
+- Real-time price tracking and automated trading
+- Grid trading bot functionality
+- Comprehensive risk management
+- Telegram notifications
 
 ### 📋 Compliance
 - This software is for educational and research purposes
