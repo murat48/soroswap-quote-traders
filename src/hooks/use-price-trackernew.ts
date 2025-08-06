@@ -106,18 +106,24 @@ export const usePriceTracker = () => {
 
   const startTracking = useCallback(async (intervalMs: number = 30000) => {
     try {
+      console.log('🚀 Starting price tracking with interval:', intervalMs);
       const tracker = await getPriceTracker();
       
       // Notification permission iste
       if (PriceTrackerClass?.requestNotificationPermission) {
+        console.log('🔔 Requesting notification permission...');
         await PriceTrackerClass.requestNotificationPermission();
       }
       
+      console.log('📊 Calling tracker.startTracking...');
       tracker.startTracking(intervalMs);
       setIsTracking(true);
       setError(null);
+      console.log('✅ Price tracking started successfully');
     } catch (err) {
-      setError((err as Error).message);
+      console.error('❌ Price tracking start failed:', err);
+      setError(err instanceof Error ? err.message : 'Unknown error');
+      setIsTracking(false);
     }
   }, []);
 

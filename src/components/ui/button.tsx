@@ -4,7 +4,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'success' | 'error';
+  variant?: 'primary' | 'secondary' | 'success' | 'error' | 'mrt' | 'mrt2'| 'mrt3';
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
 }
@@ -25,6 +25,10 @@ export const Button: React.FC<ButtonProps> = ({
     secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-800 disabled:bg-gray-100',
     success: 'bg-green-500 hover:bg-green-600 text-white disabled:bg-gray-400',
     error: 'bg-red-500 hover:bg-red-600 text-white disabled:bg-gray-400',
+    mrt: 'bg-purple-400 text-gray-800 ring-1 ring-gray-300 hover:bg-gray-50 hover:ring-gray-400 shadow-sm active:scale-[0.98] active:shadow-inner disabled:bg-gray-100 disabled:text-gray-400 disabled:ring-gray-200 disabled:cursor-not-allowed',
+     mrt2: 'bg-red-400 text-gray-800 ring-1 ring-gray-300 hover:bg-gray-50 hover:ring-gray-400 shadow-sm active:scale-[0.98] active:shadow-inner disabled:bg-gray-100 disabled:text-gray-400 disabled:ring-gray-200 disabled:cursor-not-allowed',
+
+     mrt3: 'bg-red-400 from-red-600 to-purple-700 text-white ring-1 ring-gray-300 hover:from-red-700 hover:to-purple-800 hover:ring-gray-400 shadow-sm active:scale-[0.98] active:shadow-inner disabled:bg-gray-100 disabled:text-gray-400 disabled:ring-gray-200 disabled:cursor-not-allowed',
   };
 
   const sizeClasses = {

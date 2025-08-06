@@ -29,12 +29,14 @@ export const useFreighter = (): FreighterHook => {
   const [state, setState] = useState<FreighterState>({
     isAvailable: false,
     isConnected: false,
-    publicKey: 'GCNA5EMJNXZPO57ARVJYQ5SN2DYYPD6ZCCENQ5AQTMVNKN77RDIPMI3A',
+    publicKey: '', // Boş başlasın, bağlantı kurulunca dolacak
     error: null,
   });
 
   useEffect(() => {
     const checkFreighter = async () => {
+      console.log('🔄 Otomatik Freighter durumu kontrol ediliyor...');
+      
       const isApiAvailable =
         typeof window !== 'undefined' &&
         typeof checkIsConnected === 'function' &&
@@ -42,60 +44,113 @@ export const useFreighter = (): FreighterHook => {
         typeof signFreighterTransaction === 'function';
 
       if (!isApiAvailable) {
-        setState(prev => ({ ...prev, isAvailable: false, isConnected: false, publicKey: '', error: 'Freighter eklentisi bulunamadı veya API erişilemiyor.' }));
+        console.log('❌ Freighter API mevcut değil');
+        setState({ 
+          isAvailable: false, 
+          isConnected: false, 
+          publicKey: '', 
+          error: 'Freighter eklentisi bulunamadı veya API erişilemiyor.' 
+        });
         return;
       }
 
       try {
-        setState(prev => ({ ...prev, isAvailable: true }));
-        const connected = await checkIsConnected();
-        if (connected) {
-          setState(prev => ({ ...prev, isConnected: true, error: null }));
+        setState(prev => ({ ...prev, isAvailable: true, error: null }));
+        
+        // Bağlantı durumunu kontrol et
+        const connectionResult = await checkIsConnected();
+        const isCurrentlyConnected = connectionResult?.isConnected || false;
+        
+        console.log('🔍 Mevcut bağlantı durumu:', isCurrentlyConnected);
+        console.log('🔍 Connection result:', connectionResult);
+        
+        // Public key'i localStorage'dan al (eğer varsa)
+        let currentPublicKey = '';
+        if (isCurrentlyConnected) {
+          // Eğer bağlıysa, localStorage'dan public key'i almaya çalış
+          currentPublicKey = localStorage.getItem('freighter_public_key') || '';
+          console.log('🔑 Public key from localStorage:', currentPublicKey);
         } else {
-          setState(prev => ({ ...prev, isConnected: false, publicKey: '', error: null }));
+          // Bağlantı kopmuşsa localStorage'ı temizle
+          localStorage.removeItem('freighter_public_key');
+          console.log('🗑️ localStorage temizlendi');
         }
+        
+        setState(prev => ({ 
+          ...prev, 
+          isConnected: isCurrentlyConnected,
+          publicKey: currentPublicKey,
+          error: null 
+        }));
+        
       } catch (apiError) {
-        setState(prev => ({ ...prev, isAvailable: false, isConnected: false, publicKey: '', error: 'Freighter API hatası: ' + (apiError as Error).message }));
+        console.log('❌ Otomatik kontrol hatası:', apiError);
+        setState({ 
+          isAvailable: false, 
+          isConnected: false, 
+          publicKey: '', 
+          error: 'Freighter API hatası: ' + (apiError as Error).message 
+        });
       }
     };
 
+    // İlk kontrol
     checkFreighter();
-    const interval = setInterval(checkFreighter, 1000);
+    
+    // Her 5 saniyede bir kontrol et (daha sık kontrol)
+    const interval = setInterval(checkFreighter, 5000);
     return () => clearInterval(interval);
   }, []);
 
   const connect = async (): Promise<void> => {
     try {
+      console.log('🔌 Freighter connect butonuna basıldı');
       setState(prev => ({ ...prev, error: null }));
       
-      // Önce Freighter'ın yüklü olup olmadığını kontrol et
-      const isFreighterAvailable = typeof window !== 'undefined' && !!window.freighter;
-      if (!isFreighterAvailable) {
-        throw new Error('Lütfen önce Freighter cüzdanını yükleyin ve tarayıcıyı yenileyin');
+      // Freighter API'lerinin varlığını kontrol et
+      console.log('🔍 Freighter API kontrolleri:');
+      console.log('- window exists:', typeof window !== 'undefined');
+      console.log('- checkIsConnected:', typeof checkIsConnected);
+      console.log('- requestFreighterAccess:', typeof requestFreighterAccess);
+      console.log('- signFreighterTransaction:', typeof signFreighterTransaction);
+      
+      // Freighter API fonksiyonları mevcut mu kontrol et
+      if (typeof requestFreighterAccess !== 'function') {
+        throw new Error('Freighter eklentisi yüklü değil. Lütfen Freighter browser eklentisini yükleyin ve sayfayı yenileyin.');
       }
 
-      // Freighter'ın bağlı olup olmadığını kontrol et
-      try {
-        const connected = await checkIsConnected();
-        if (!connected) {
-          throw new Error('Lütfen Freighter cüzdanını açın ve tarayıcı eklentilerini kontrol edin');
-        }
-      } catch {
-        throw new Error('Freighter ile iletişim kurulamıyor. Lütfen eklentiyi yeniden başlatın');
+      console.log('🚀 requestFreighterAccess çağrılıyor...');
+      // Freighter popup açacak ve kullanıcıdan izin isteyecek
+      const accessResult = await requestFreighterAccess();
+      console.log('📋 Freighter access result:', accessResult);
+      
+      if (!accessResult) {
+        throw new Error('Freighter erişimi reddedildi');
       }
 
-      // Erişim izni iste
-      const publicKey = await requestFreighterAccess();
+      // Public key'i al
+      const publicKey = typeof accessResult === 'string' ? accessResult : accessResult?.address || '';
+      console.log('🔑 Public key alındı:', publicKey);
+      
       if (!publicKey) {
-        throw new Error('Cüzdan erişimi reddedildi');
+        throw new Error('Public key alınamadı');
       }
+      
+      // Public key'i localStorage'a kaydet
+      localStorage.setItem('freighter_public_key', publicKey);
+      console.log('💾 Public key localStorage\'a kaydedildi');
       
       setState(prev => ({
         ...prev,
         isConnected: true,
-        publicKey: publicKey.toString(),
+        publicKey: publicKey,
+        error: null
       }));
+      
+      console.log('✅ Freighter bağlantısı başarılı! Address:', publicKey);
+      
     } catch (error) {
+      console.error('❌ Freighter bağlantı hatası:', error);
       setState(prev => ({
         ...prev,
         error: (error as Error).message,
@@ -108,11 +163,19 @@ export const useFreighter = (): FreighterHook => {
 
   const signTransaction = async (xdr: string): Promise<string> => {
     try {
+      console.log('🔐 Freighter signTransaction called with XDR:', xdr.substring(0, 50) + '...');
+      
       const result = await signFreighterTransaction(xdr, {
         networkPassphrase: 'Test SDF Network ; September 2015'
       });
+      
+      console.log('✅ Freighter signTransaction result:', result);
+      console.log('✅ Signed XDR type:', typeof result.signedTxXdr);
+      console.log('✅ Signed XDR preview:', result.signedTxXdr?.substring(0, 50) + '...');
+      
       return result.signedTxXdr;
     } catch (error) {
+      console.error('❌ Freighter signTransaction error:', error);
       setState(prev => ({
         ...prev,
         error: (error as Error).message,
@@ -127,3 +190,4 @@ export const useFreighter = (): FreighterHook => {
     signTransaction,
   };
 };
+

@@ -5,7 +5,8 @@ export interface QuoteRequest {
   amount: string;
   tradeType: 'EXACT_IN';
   protocols: string[];
-  slippageTolerance?: number;
+  // slippageTolerance?: number;
+  slippageBps?:number;
   parts?: number;
   maxHops?: number;
   feeBps?: number;
@@ -72,6 +73,10 @@ export interface AssetOption {
   value: string;
   label: string;
   symbol: string;
+  type?: string;
+  contract?: string;
+  code?: string;
+  issuer?: string;
 }
 
 declare global {

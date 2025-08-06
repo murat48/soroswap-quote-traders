@@ -15,11 +15,11 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
   isTracking
 }) => {
   const formatPrice = (price: number): string => {
-    return price > 0 ? `$${price.toFixed(4)}` : 'Yükleniyor...';
+    return price > 0 ? `$${price.toFixed(4)}` : 'Loading...';
   };
 
   const formatTime = (date: Date | null): string => {
-    if (!date) return 'Henüz güncellenmedi';
+    if (!date) return 'Not Updated Yet';
     return date.toLocaleTimeString('tr-TR');
   };
 
@@ -28,7 +28,7 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
       <div className="space-y-4">
         <div className="flex items-center justify-center gap-2">
           <span className="text-2xl">🌟</span>
-          <h2 className="text-2xl font-bold text-gray-800">XLM Fiyatı</h2>
+          <h2 className="text-2xl font-bold text-gray-800">XLM Price</h2>
         </div>
         
         <div className="text-center">
@@ -36,18 +36,18 @@ export const PriceDisplay: React.FC<PriceDisplayProps> = ({
             {formatPrice(price)}
           </div>
           <div className="text-sm text-gray-600">
-            USDC karşısında
+            Against USDC
           </div>
         </div>
 
         <div className="flex items-center justify-center gap-3 text-sm">
           <div className={`flex items-center gap-1 ${isTracking ? 'text-green-600' : 'text-gray-500'}`}>
             <span>{isTracking ? '🟢' : '⚪'}</span>
-            <span>{isTracking ? 'Takip Aktif' : 'Takip Durdu'}</span>
+            <span>{isTracking ? 'Tracking Active' : 'Tracking Stopped'}</span>
           </div>
           
           <div className="text-gray-500">
-            Son Güncelleme: {formatTime(lastUpdate)}
+            Last Update: {formatTime(lastUpdate)}
           </div>
         </div>
       </div>

@@ -333,7 +333,7 @@ export class PriceTracker {
       console.log('🔔 Browser notification gösteriliyor');
       new Notification('XLM Fiyat Uyarısı (Soroswap)', {
         body: message,
-        icon: '/xlm-icon.png'
+        icon: '/next.svg' // Mevcut bir ikon kullanıyoruz
       });
     } else {
       console.log('🔕 Browser notification izni yok');

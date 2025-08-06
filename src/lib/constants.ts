@@ -29,21 +29,28 @@ export const API_CONFIG = {
 //   },
   
 // ];
+// CAS3J7GYLGXMF6TDJBBYYSE3HQ6BBSMLNUQ34T6TZMYMW2EVH34XOWMA
+//     CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75
 export const ASSET_OPTIONS: AssetOption[] = [
   {
     value: 'CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC',
     label: 'Stellar Lumens (XLM)',
-    symbol: 'XLM'
+    symbol: 'XLM',
+    type: 'native'
   },
   {
     value: 'CDYZ6I4FTABFDVWIH2RSVDVIFSJF7FMA2CTUBFHWCLPSLIGO55K4HNSN',
     label: 'Dogstar (XTAR)',
-    symbol: 'XTAR'
+    symbol: 'XTAR',
+    type: 'contract',
+    contract: 'CDYZ6I4FTABFDVWIH2RSVDVIFSJF7FMA2CTUBFHWCLPSLIGO55K4HNSN'
   },
   {
     value: 'CBBHRKEP5M3NUDRISGLJKGHDHX3DA2CN2AZBQY6WLVUJ7VNLGSKBDUCM',
     label: 'USDCoin (USDC)',
-    symbol: 'USDC'
+    symbol: 'USDC',
+    type: 'contract',
+    contract: 'CBBHRKEP5M3NUDRISGLJKGHDHX3DA2CN2AZBQY6WLVUJ7VNLGSKBDUCM'
   },
   {
     value: 'CCPOB5HBFV2MGDFHR2QOFW3Y2JS7DQVJMWL7YESGSGH4AGQWVCJIPCKE',
@@ -57,7 +64,7 @@ export const ASSET_OPTIONS: AssetOption[] = [
   },
   {
     value: 'CCXQWO33QBEUDVTWDDOYLD2SYEJSWUM6DIJUX6NDAOSXNCGK3PSIWQJG',
-    label: 'Aquarius (AQUA)',
+    label: 'AQUA',
     symbol: 'AQUA'
   },
   {
@@ -97,9 +104,36 @@ export const ASSET_OPTIONS: AssetOption[] = [
   }
 ];
 export const DEFAULT_PROTOCOLS = ['soroswap'];
-export const DEFAULT_SLIPPAGE = 50; // 1% slippage tolerance
+export const DEFAULT_SLIPPAGE = 1000; // 1% slippage tolerance
 export const DEFAULT_FEE_BPS = 50; // 0.5% platform fee
 export const DEFAULT_FEE_PARTS = 50; // Split into 5 parts max
+
+// Asset-specific configurations for maxHops
+export const ASSET_CONFIGS = {
+  // High liquidity assets - lower maxHops
+  'USDC': { maxHops: 1, slippageBps: 1000 },
+  'XLM': { maxHops: 1, slippageBps: 1000 },
+  'XTAR': { maxHops: 1, slippageBps: 1000 },
+  'BTC': { maxHops: 1, slippageBps: 1000 },
+  
+  // Medium liquidity assets - medium maxHops
+  'XRP': { maxHops: 2, slippageBps: 1200 },
+  'AQUA': { maxHops: 2, slippageBps: 1200 },
+  
+  // Lower liquidity assets - higher maxHops
+  'EURC': { maxHops: 3, slippageBps: 1000 },
+  'ARST': { maxHops: 3, slippageBps: 1500 },
+  'BRL': { maxHops: 3, slippageBps: 1500 },
+  
+  // Exotic assets - highest maxHops
+  'WUNP': { maxHops: 4, slippageBps: 2000 },
+  'WUNT': { maxHops: 4, slippageBps: 2000 },
+  'PYRZ': { maxHops: 4, slippageBps: 2000 },
+  'NYLF': { maxHops: 4, slippageBps: 2000 },
+};
+
+// Default values for unknown assets
+export const DEFAULT_ASSET_CONFIG = { maxHops: 2, slippageBps: 1200 };
 
 // export const DEFAULT_FEE_PARTS = 1; // Split into 5 parts max
 export const DEFAULT_FEE_MAXHOPS = 1; // Maximum 2 hops for better liquidity
