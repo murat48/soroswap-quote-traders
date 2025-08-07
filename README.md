@@ -122,6 +122,47 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 3. Click "🤖 Automatic Grid Bot" to enable
 4. Bot automatically manages multiple positions
 
+## 🤖 Grid Trading Bot - Quick Guide
+
+### What is Grid Trading?
+Grid trading bot automatically buys at low prices and sells at high prices to generate profits. It first executes buy orders, then when prices rise, it performs sell orders to realize profits.
+
+### 🎯 How It Works
+
+#### 1. **Buy First Strategy**
+- Bot first buys at lower levels
+- Opens more buy positions as price drops
+- Average cost reduction strategy
+
+#### 2. **Sell After Buy**
+- Places sell orders above buy prices
+- Realizes profits when price rises
+- Continuously tracks profit/loss status
+
+### 📊 Usage Guide
+
+#### Quick Setup
+1. Navigate to `/price` page
+2. Select trading pair (XLM/USDC (currently working))
+3. Set buy levels (below current price)
+4. Set sell levels (above buy prices)
+5. Enable "🤖 Automatic Grid Bot"
+
+
+### 📈 Profit/Loss Tracking
+
+#### Real-time Monitoring
+- **Current P&L**: Shows live profit/loss status
+- **Realized Profits**: Completed trades profit
+- **Unrealized P&L**: Open positions status
+- **Total ROI**: Overall return on investment
+
+#### Dashboard Features
+- Live price updates
+- Active buy/sell orders
+- Profit analytics
+- Risk metrics
+  
 ## 🏗️ Architecture
 
 ### Tech Stack
