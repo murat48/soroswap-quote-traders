@@ -158,13 +158,13 @@ src/
 - Real-time price feeds from Soroswap DEX
 - Fallback to CoinGecko for reliability
 - Custom alerts and notifications
-- Historical price data
+
 
 #### Trading Engine
 - Automated trigger execution
 - Order routing optimization
 - Risk management integration
-- Trade history logging
+
 
 #### Wallet System
 - Freighter wallet integration
