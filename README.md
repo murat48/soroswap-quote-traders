@@ -162,6 +162,74 @@ Grid trading bot automatically buys at low prices and sells at high prices to ge
 - Active buy/sell orders
 - Profit analytics
 - Risk metrics
+
+# Bot Wallet Written for an Automated Grid Bot (Not Required for Manual Transactions)
+
+## How Does It Work?
+
+Bot Wallet system creates and manages an independent Stellar wallet for Grid Trading Bot to perform automated transactions.
+
+## Features
+
+### 🤖 Automatic Wallet Creation
+- Generates random keypair using Stellar SDK
+- Private key stored securely in localStorage
+- Public key displays bot wallet address
+
+### 💰 Auto Funding
+- Checks bot wallet XLM balance
+- Automatically transfers required amount (default 2 XLM) if insufficient
+- Smart calculation based on grid buy quote amount
+
+
+### 📊 Balance Management
+- Real-time balance monitoring
+- Stellar Horizon API integration
+- Automatic balance updates
+
+### 📱 Telegram Integration
+- Notifications for funding operations
+- Detailed information with transfer hash
+- Error alerts when issues occur
+
+## Usage
+
+1. **Create Bot Wallet** 
+``` 
+Click "Create Bot Wallet" button-(If a bot has been created, Create Bot wallet will not be created again on localhost) 
+```
+
+2. **Funding** 
+```
+When first created 
+Bot wallet 2 Xlm funds need to be sent 
+```
+
+3. **Balance Check** 
+``` 
+Bot wallet balance updates automatically 
+Use "Check Balance" button for manual control 
+```
+
+
+### Auto Funding Algorithm
+1. Check bot wallet balance
+2. Calculate grid quote amount + 0.0002 XLM
+3. Sign with Freighter (Not required in automatic mode. The bot signs itself.)
+4. Submit to Stellar network
+
+### Security
+- Private key stored only in localStorage
+- Network: Stellar Testnet
+- Transaction timeout: 300 seconds
+- Uses base fee
+
+## Requirements
+
+- Freighter Wallet must be installed(For manual operation. Not required for automatic grid bot. The bot signs itself.)
+- XLM balance on Testnet
+- Telegram bot (optional, for notifications)
+
   
 ## 🏗️ Architecture
 
