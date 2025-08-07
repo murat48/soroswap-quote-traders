@@ -98,11 +98,11 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 3. Ensure you have sufficient XLM balance
 
 ### 2. Configure Trading Strategy
-1. Navigate to `/auto-trading` page
+1. Navigate to `/` page
 2. Select a trading pair (e.g., XLM/USDC)
 3. Set buy and sell price triggers
 4. Configure amounts and risk parameters
-5. Apply pre-built templates or create custom strategies
+
 
 ### 3. Setup Telegram Notifications (Optional)
 1. Create a Telegram bot via [@BotFather](https://t.me/botfather)
@@ -136,7 +136,6 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 ```
 src/
 ├── app/                    # Next.js App Router
-│   ├── auto-trading/       # Automated trading interface
 │   ├── price/              # Grid trading bot
 │   └── api/                # API routes
 ├── components/             # React components
