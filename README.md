@@ -40,7 +40,7 @@ An advanced automated trading bot for Soroswap DEX on Stellar network with intel
 - **Local Storage**: Persistent settings and preferences
 
 ## 🎥 Live Demo
-[![Soroswap Quote Trader - Live Trading Demo](https://img.youtube.com/vi/6m0Es4zb2MM/maxresdefault.jpg)](https://www.youtube.com/watch?v=T1LGEH2oAOE)
+[![Soroswap Quote Trader - Live Trading Demo](https://img.youtube.com/vi/6m0Es4zb2MM/maxresdefault.jpg)](https://www.youtube.com/watch?v=6m0Es4zb2MM)
 
 ## 🚀 Quick Start
 
